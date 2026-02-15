@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idrees Development Organization - Hope for the Hopeless</title>
+    <meta name="description" content="Idrees Development Organization (IDO) is dedicated to bringing hope and support to communities in need through education, food security, and sustainable development.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0071e3;
+            --secondary-orange: #ff9500;
+            --light-green: #34c759;
+            --text-dark: #1d1d1f;
+            --text-gray: #86868b;
+            --bg-light: #f5f5f7;
+            --white: #ffffff;
+            --purple: #bf5af2;
+            --pink: #ff2d55;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Floating Shapes Background */
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.6;
+            filter: blur(60px);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 50%;
+            top: 20%;
+            right: -100px;
+            animation-delay: 5s;
+        }
+
+        .shape-3 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 50%;
+            bottom: 10%;
+            left: 10%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(50px, 50px) scale(1.1);
+            }
+            50% {
+                transform: translate(0, 100px) scale(0.9);
+            }
+            75% {
+                transform: translate(-50px, 50px) scale(1.05);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: saturate(180%) blur(20px);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 2rem;
+            background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--white);
+            max-width: 980px;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            letter-spacing: 0.02em;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.05;
+            letter-spacing: -0.035em;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .tagline {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--secondary-orange) 0%, #ff6b35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            line-height: 1.6;
+            font-weight: 400;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 980px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            letter-spacing: -0.01em;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(0, 113, 227, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.05);
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-radius: 28px;
+            padding: 3rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 7rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(0, 113, 227, 0.1);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--primary-blue);
+            letter-spacing: 0.02em;
+        }
+
+        .section-header h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            letter-spacing: -0.035em;
+            line-height: 1.1;
+        }
+
+        .section-header p {
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Mission Section */
+        .mission {
+            background: var(--bg-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .mission-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--purple));
+            transform: scaleX(0);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mission-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .mission-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-card:nth-child(1) .mission-icon {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .mission-card:nth-child(2) .mission-icon {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .mission-card:nth-child(3) .mission-icon {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .mission-card h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .mission-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Impact Section */
+        .impact {
+            background: var(--text-dark);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impact .section-badge {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+        }
+
+        .impact .section-header h2,
+        .impact .section-header p {
+            color: var(--white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .stat-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-10px) scale(1.05);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--secondary-orange) 0%, #ff6b35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.03em;
+            position: relative;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 500;
+            position: relative;
+        }
+
+        /* Programs Section */
+        .programs {
+            background: var(--white);
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .program-card {
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .program-image {
+            width: 100%;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card:nth-child(1) .program-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .program-card:nth-child(2) .program-image {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .program-card:nth-child(3) .program-image {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .program-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
+        }
+
+        .program-content {
+            padding: 2.5rem;
+        }
+
+        .program-content h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .program-content p {
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .program-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .program-content li {
+            padding: 0.75rem 0;
+            color: var(--text-gray);
+            position: relative;
+            padding-left: 2rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .program-content li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--light-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Get Involved Section */
+        .get-involved {
+            background: var(--bg-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .involvement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .involvement-card {
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .involvement-icon-wrapper {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .involvement-card:nth-child(1) .involvement-icon-wrapper {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .involvement-card:nth-child(2) .involvement-icon-wrapper {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .involvement-card:nth-child(3) .involvement-icon-wrapper {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .involvement-card:hover .involvement-icon-wrapper {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .involvement-icon {
+            font-size: 3.5rem;
+        }
+
+        .involvement-card h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .involvement-card p {
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact .section-badge {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+        }
+
+        .contact .section-header h2,
+        .contact .section-header p {
+            color: var(--white);
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 980px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .social-icon {
+            font-size: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #000000;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #999999 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .footer-content p {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: center;
+                padding: 3rem 0;
+                transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                gap: 1.5rem;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .section-header p {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .mission-grid,
+            .programs-grid,
+            .involvement-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .glass-card {
+                padding: 2rem;
+            }
+
+            .stat-number {
+                font-size: 3rem;
+            }
+
+            .shape {
+                filter: blur(40px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .hero-badge {
+                font-size: 0.75rem;
+                padding: 0.4rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">IDO</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#mission">Mission</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#get-involved">Get Involved</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">✨ Making a Difference Since Day One</div>
+            <h1>Idrees Development Organization</h1>
+            <p class="tagline">Hope for the Hopeless</p>
+            <p>Transforming lives through education, sustainable development, and compassionate humanitarian support. Together, we're building a future where every person has the opportunity to thrive.</p>
+            <div class="cta-buttons">
+                <a href="#get-involved" class="btn btn-primary">Start Making Impact</a>
+                <a href="#programs" class="btn btn-secondary">Explore Programs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission" class="mission">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Our Purpose</div>
+                <h2>Empowering Communities</h2>
+                <p>We believe in creating lasting change through holistic development initiatives that address the root causes of poverty and inequality.</p>
+            </div>
+            <div class="mission-grid">
+                <div class="mission-card glass-card fade-in">
+                    <div class="mission-icon">📚</div>
+                    <h3>Education for All</h3>
+                    <p>Providing access to quality education and learning resources to empower the next generation with knowledge and skills for a brighter tomorrow.</p>
+                </div>
+                <div class="mission-card glass-card fade-in">
+                    <div class="mission-icon">🍽️</div>
+                    <h3>Food Security</h3>
+                    <p>Ensuring no family goes hungry by providing nutritious meals, food assistance, and sustainable agricultural support to vulnerable communities.</p>
+                </div>
+                <div class="mission-card glass-card fade-in">
+                    <div class="mission-icon">🏗️</div>
+                    <h3>Community Development</h3>
+                    <p>Building sustainable infrastructure and creating economic opportunities that enable communities to thrive independently with dignity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="impact">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+        </div>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Our Impact</div>
+                <h2>Growing Together</h2>
+                <p>Every contribution creates ripples of positive change that transform lives and communities across the globe.</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Families Supported</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">1000+</span>
+                    <span class="stat-label">Meals Provided</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">Students Educated</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Projects Completed</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="programs">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">What We Do</div>
+                <h2>Our Programs</h2>
+                <p>Comprehensive initiatives designed to address immediate needs while building long-term sustainability.</p>
+            </div>
+            <div class="programs-grid">
+                <div class="program-card glass-card">
+                    <div class="program-image">📖</div>
+                    <div class="program-content">
+                        <h3>Education Initiative</h3>
+                        <p>Breaking the cycle of poverty through access to quality education, learning materials, and skill development programs.</p>
+                        <ul>
+                            <li>School supplies and books distribution</li>
+                            <li>Tutoring and mentorship programs</li>
+                            <li>Vocational training opportunities</li>
+                            <li>Scholarship support for deserving students</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="program-card glass-card">
+                    <div class="program-image">🌾</div>
+                    <div class="program-content">
+                        <h3>Food Relief Program</h3>
+                        <p>Providing immediate food assistance and promoting sustainable food security through agricultural support.</p>
+                        <ul>
+                            <li>Emergency food packages for families</li>
+                            <li>Ramadan iftaar and special meal programs</li>
+                            <li>Community kitchen initiatives</li>
+                            <li>Agricultural development support</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="program-card glass-card">
+                    <div class="program-image">🏘️</div>
+                    <div class="program-content">
+                        <h3>Community Empowerment</h3>
+                        <p>Building resilient communities through infrastructure development and economic opportunity creation.</p>
+                        <ul>
+                            <li>Clean water and sanitation projects</li>
+                            <li>Healthcare awareness campaigns</li>
+                            <li>Microfinance and livelihood support</li>
+                            <li>Emergency relief and disaster response</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Involved Section -->
+    <section id="get-involved" class="get-involved">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Join Us</div>
+                <h2>Make a Difference</h2>
+                <p>Your support can transform lives. Join us in our mission to bring hope to those who need it most.</p>
+            </div>
+            <div class="involvement-grid">
+                <div class="involvement-card">
+                    <div class="involvement-icon-wrapper">
+                        <div class="involvement-icon">💝</div>
+                    </div>
+                    <h3>Donate</h3>
+                    <p>Your generous contributions help us provide essential services, food, education, and support to families in need.</p>
+                    <a href="#contact" class="btn btn-primary">Contribute Now</a>
+                </div>
+                <div class="involvement-card">
+                    <div class="involvement-icon-wrapper">
+                        <div class="involvement-icon">🤝</div>
+                    </div>
+                    <h3>Volunteer</h3>
+                    <p>Share your time, skills, and passion to make a direct impact on the lives of those we serve.</p>
+                    <a href="#contact" class="btn btn-primary">Join Our Team</a>
+                </div>
+                <div class="involvement-card">
+                    <div class="involvement-icon-wrapper">
+                        <div class="involvement-icon">📢</div>
+                    </div>
+                    <h3>Spread the Word</h3>
+                    <p>Help us reach more people by sharing our mission and raising awareness about our cause.</p>
+                    <a href="#contact" class="btn btn-primary">Share Our Story</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Connect</div>
+                <h2>Follow Our Journey</h2>
+                <p>Stay updated on our initiatives and be part of our growing community of changemakers.</p>
+            </div>
+            <div class="contact-content">
+                <div class="social-links">
+                    <a href="https://www.instagram.com/hopewithidrees" target="_blank" class="social-link">
+                        <span class="social-icon">📸</span>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@hopewithidrees" target="_blank" class="social-link">
+                        <span class="social-icon">🎵</span>
+                        <span>TikTok</span>
+                    </a>
+                </div>
+                <p style="font-size: 1.2rem; margin-top: 3rem; opacity: 0.8; line-height: 1.8;">Together, we can make a lasting difference. Every act of kindness creates a ripple of hope that extends far beyond what we can see. Thank you for being part of our mission.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>Idrees Development Organization</h3>
+            <p>Hope for the Hopeless</p>
+            <p style="margin-top: 2rem; opacity: 0.6;">&copy; 2026 Idrees Development Organization (IDO). All rights reserved.</p>
+            <p style="opacity: 0.6;">Building a better tomorrow, one life at a time.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Smooth scroll animation for sections
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.mission-card, .program-card, .involvement-card, .stat-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(card);
+        });
+
+        // Counter animation for stats
+        const animateCounter = (element, target, duration = 2000) => {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start) + '+';
+                }
+            }, 16);
+        };
+
+        // Trigger counter animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('.stat-number').forEach(stat => {
+                        const target = parseInt(stat.textContent);
+                        stat.textContent = '0+';
+                        animateCounter(stat, target);
+                    });
+                    statsObserver.disconnect();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const impactSection = document.querySelector('.impact');
+        if (impactSection) {
+            statsObserver.observe(impactSection);
+        }
+
+        // Parallax effect for floating shapes
+        document.addEventListener('mousemove', (e) => {
+            const shapes = document.querySelectorAll('.shape');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 20;
+                const x = (mouseX - 0.5) * speed;
+                const y = (mouseY - 0.5) * speed;
+                shape.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
